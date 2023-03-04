@@ -42,6 +42,6 @@ export const [setLibs, getLibs] = (() => {
  * ------------------------------------------------------------
  */
 
-export async function sampleUseMilo() {
+export async function useMiloSample() {
   const { createTag } = await import(`${getLibs()}/utils/utils.js`);
 }
