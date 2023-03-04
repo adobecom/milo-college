@@ -24,7 +24,7 @@ export const [setLibs, getLibs] = (() => {
         const branch = new URLSearchParams(search).get('milolibs') || 'main';
         if (branch === 'local') {
           libs = 'http://localhost:6456/libs';
-        } else if (branch.indexOf('--') > -1) {
+        } else if (branch.includes('--')) {
           libs = `https://${branch}.hlx.live/libs`;
         } else {
           libs = `https://${branch}--milo--adobecom.hlx.live/libs`;
