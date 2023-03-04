@@ -18,16 +18,15 @@ export const [setLibs, getLibs] = (() => {
   return [
     (prodLibs, location) => {
       const { hostname, search } = location || window.location;
-      if (!hostname.includes('.hlx.') && !hostname.includes('local')) {
+      if (!(hostname.includes('.hlx.') || hostname.includes('local'))) {
         libs = prodLibs;
       } else {
         const branch = new URLSearchParams(search).get('milolibs') || 'main';
         if (branch === 'local') {
           libs = 'http://localhost:6456/libs';
-        } else if (branch.includes('--')) {
-          libs = `https://${branch}.hlx.live/libs`;
         } else {
-          libs = `https://${branch}--milo--adobecom.hlx.live/libs`;
+          const sub = branch.includes('--') ? branch : `${branch}--milo--adobecom`;
+          libs = `https://${sub}.hlx.live/libs`;
         }
       }
       return libs;
@@ -37,7 +36,9 @@ export const [setLibs, getLibs] = (() => {
 
 /*
  * ------------------------------------------------------------
- * Edit above at your own risk
+ * Edit above at your own risk.
+ *
+ * Note: This file should have no self-invoking functions.
  * ------------------------------------------------------------
  */
 
