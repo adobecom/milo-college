@@ -33,7 +33,7 @@ const CONFIG = {
 };
 
 // Load LCP image immediately
-(async function loadLCPImage() {
+(function loadLCPImage() {
   const lcpImg = document.querySelector('img');
   lcpImg?.removeAttribute('loading');
 }());
