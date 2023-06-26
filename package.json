@@ -1,6 +1,7 @@
 {
   "name": "@adobecom/college",
   "private": true,
+  "type": "module",
   "version": "1.0.0",
   "description": "Website foundation technology.",
   "scripts": {
