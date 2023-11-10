@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { setLibs } from './utils.js';
+import { setLibs, decorateArea } from './utils.js';
 
 // Add project-wide style path here.
 const STYLES = '';
@@ -25,6 +25,7 @@ const CONFIG = {
   // imsClientId: 'college',
   // geoRouting: 'off',
   // fallbackRouting: 'off',
+  decorateArea,
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
     de: { ietf: 'de-DE', tk: 'hah7vzn.css' },
@@ -32,11 +33,8 @@ const CONFIG = {
   },
 };
 
-// Load LCP image immediately
-(function loadLCPImage() {
-  const lcpImg = document.querySelector('img');
-  lcpImg?.removeAttribute('loading');
-}());
+// Decorate the page with site specific needs.
+decorateArea();
 
 /*
  * ------------------------------------------------------------
@@ -59,7 +57,7 @@ const miloLibs = setLibs(LIBS);
 
 (async function loadPage() {
   const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
-
-  setConfig({ ...CONFIG, miloLibs });
+  const config = setConfig({ ...CONFIG, miloLibs });
+  console.log(config);
   await loadArea();
 }());

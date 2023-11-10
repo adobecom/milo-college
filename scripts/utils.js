@@ -37,6 +37,15 @@ export const [setLibs, getLibs] = (() => {
  * ------------------------------------------------------------
  */
 
+export function decorateArea(area = document) {
+
+  // LCP image decoration
+  (function decorateLCPImage() {
+    const lcpImg = area.querySelector('img');
+    lcpImg?.removeAttribute('loading');
+  }());
+}
+
 export async function useMiloSample() {
   const { createTag } = await import(`${getLibs()}/utils/utils.js`);
 }
