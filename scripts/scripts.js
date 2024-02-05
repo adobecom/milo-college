@@ -13,6 +13,14 @@
 // Add project-wide style path here.
 const STYLES = '';
 
+const decorateArea = (area = document) => {
+  // LCP image decoration
+  (function decorateLCPImage() {
+    const lcpImg = area.querySelector('img');
+    lcpImg?.removeAttribute('loading');
+  }());
+};
+
 // Add any config options.
 const CONFIG = {
   // codeRoot: '',
@@ -52,7 +60,6 @@ const { miloLibs } = window;
 
 (async function loadPage() {
   const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
-  const config = setConfig({ ...CONFIG, miloLibs });
-  console.log(config);
+  setConfig({ ...CONFIG, miloLibs });
   await loadArea();
 }());
