@@ -10,12 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
+// Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
+const LIBS = '/libs';
+
+/**
+ * The decision engine for where to get Milo's libs from.
+ */
 window.miloLibs = (() => {
   const { hostname, search } = location || window.location;
-  if (!(hostname.includes('.hlx.') || hostname.includes('local'))) return '/libs';
+  if (!(hostname.includes('.hlx.') || hostname.includes('local'))) return LIBS;
   const branch = new URLSearchParams(search).get('milolibs') || 'main';
   if (branch === 'local') return 'http://localhost:6456/libs';
   return branch.includes('--') ? `https://${branch}.hlx.live/libs` : `https://${branch}--milo--adobecom.hlx.live/libs`;
 })();
 
-window.document.head.insertAdjacentHTML('beforeend', `<script src="${window.miloLibs}/utils/utils.js" type="module"></script>`);
+window.document.head.insertAdjacentHTML('beforeend', `<link rel="modulepreload" href="${window.miloLibs}/utils/utils.js" as="script" />`);

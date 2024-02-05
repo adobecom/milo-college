@@ -1,7 +1,15 @@
 <!-- Modifying this file will impact your performance -->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script>
-  window.miloLibs=(()=>{let{hostname:l,search:i}=location||window.location;if(!(l.includes(".hlx.")||l.includes("local")))return"/libs";let t=new URLSearchParams(i).get("milolibs")||"main";return"local"===t?"http://localhost:6456/libs":t.includes("--")?`https://${t}.hlx.live/libs`:`https://${t}--milo--adobecom.hlx.live/libs`})(),window.document.head.insertAdjacentHTML("afterbegin",`<script src="${window.miloLibs}/utils/utils.js" type="module"></script>`);
+window.miloLibs = (() => {
+  const { hostname, search } = location || window.location;
+  if (!(hostname.includes('.hlx.') || hostname.includes('local'))) return '/libs';
+  const branch = new URLSearchParams(search).get('milolibs') || 'main';
+  if (branch === 'local') return 'http://localhost:6456/libs';
+  return branch.includes('--') ? `https://${branch}.hlx.live/libs` : `https://${branch}--milo--adobecom.hlx.live/libs`;
+})();
+
+window.document.head.insertAdjacentHTML('afterbegin', `<script src="${window.miloLibs}/utils/utils.js" type="module"></script>`);
 </script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/fallback.js" nomodule></script>
