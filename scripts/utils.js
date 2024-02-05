@@ -23,3 +23,5 @@ window.miloLibs = (() => {
   if (branch === 'local') return 'http://localhost:6456/libs';
   return branch.includes('--') ? `https://${branch}.hlx.live/libs` : `https://${branch}--milo--adobecom.hlx.live/libs`;
 })();
+
+window.document.head.insertAdjacentHTML('beforeend', `<link rel="modulepreload" href="${window.miloLibs}/utils/utils.js" as="script" />`)
