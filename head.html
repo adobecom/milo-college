@@ -1,7 +1,7 @@
 <!-- Modifying this file will impact your performance -->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script>
-  window.miloLibs=(()=>{let{hostname:l,search:i}=location||window.location;if(!(l.includes(".hlx.")||l.includes("local")))return"/libs";let e=new URLSearchParams(i).get("milolibs")||"main";return"local"===e?"http://localhost:6456/libs":e.includes("--")?`https://${e}.hlx.live/libs`:`https://${e}--milo--adobecom.hlx.live/libs`})(),window.document.head.insertAdjacentHTML("beforeend",`<link rel="modulepreload" href="${window.miloLibs}/utils/utils.js" as="script" />`);
+  window.miloLibs=(()=>{let{hostname:l,search:i}=location||window.location;if(!(l.includes(".hlx.")||l.includes("local")))return"/libs";let t=new URLSearchParams(i).get("milolibs")||"main";return"local"===t?"http://localhost:6456/libs":t.includes("--")?`https://${t}.hlx.live/libs`:`https://${t}--milo--adobecom.hlx.live/libs`})(),window.document.head.insertAdjacentHTML("afterbegin",`<script src="${window.miloLibs}/utils/utils.js" type="module"></script>`);
 </script>
 <script src="/scripts/scripts.js" type="module"></script>
 <script src="/scripts/fallback.js" nomodule></script>
