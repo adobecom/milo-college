@@ -27,3 +27,7 @@ or:
 npm run test:watch
 ```
 This will give you several options to debug tests. Note: coverage may not be accurate.
+
+## Security
+1. Create a Service Now ID for your project via [Service Registry Portal](https://adobe.service-now.com/service_registry_portal.do#/search)
+2. Update the `.kodiak/config.yaml` file to make sure valid team members are assigned security vulnerability Jira tickets.
