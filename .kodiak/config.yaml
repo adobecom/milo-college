@@ -1,0 +1,33 @@
+version: 1.0
+
+#### If you have questions about this, please contact #kodiak-security on Slack. ####
+
+# Every repository requires a unique Service Now ID number. You need to create a new service using
+# the Service Registry Portal https://adobe.service-now.com/service_registry_portal.do#/search
+# You should NOT leave this default!
+snow:
+  - id: 546356 # Milo College Default https://adobe.service-now.com/service_registry_portal.do#/service/546356
+
+notifications:
+  jira:
+    default:
+      project: MWPW # Project queue in which the security ticket will be created. Can be any valid JIRA project.
+      filters:
+        include:
+          risk_rating: R5 # Please do not change this unless instructed to do so.
+      fields:
+        assignee:
+          name: casalino
+        customfield_11800: MWPW-140779 # Jira epic security tickets will be assigned to.
+        customfield_11900:
+          value: "Unicorn" # Put your team name here; it must be a valid team in Jira.
+        watchers: # Everyone who is an admin on your repository should be a watcher.
+          - casalino
+          - jmichnow
+          - mauchley
+        labels: # You can add additional labels to your tickets here. Do not delete/change the first three.
+          - "OriginatingProcess=Kodiak"
+          - "security"
+          - "kodiak-ticket"
+        components:
+          - name: "DevOps Security" # Please do not change this.
