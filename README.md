@@ -3,7 +3,7 @@ Use this project template to create a Milo site.
 
 ## Steps
 
-1. Copy existing [`college`](https://adobe.sharepoint.com/:f:/r/sites/adobecom/Shared%20Documents/) content folder to your sharepoint and give helix@adobe.com View access
+1. Copy existing [`college`](https://adobe.sharepoint.com/:f:/r/sites/adobecom/Shared%20Documents/demos/college) content folder to your sharepoint and give helix@adobe.com View access
 2. Click "[Use this template](https://github.com/adobecom/milo-college/generate)" Github button on this project.
 
 From your newly created project
@@ -14,8 +14,8 @@ From your newly created project
 4. Start creating your content.
 
 ## Developing
-1. Install the [Helix CLI](https://github.com/adobe/helix-cli): `sudo npm install -g @adobe/helix-cli`
-1. Run `hlx up` this repo's folder. (opens your browser at `http://localhost:3000`)
+1. Install the [Helix CLI](https://github.com/adobe/helix-cli): `sudo npm install -g @adobe/aem-cli`
+1. Run `aem up` this repo's folder. (opens your browser at `http://localhost:3000`)
 1. Open this repo's folder in your favorite editor and start coding.
 
 ## Testing
