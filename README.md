@@ -5,6 +5,7 @@ Use this project template to create a Milo site.
 
 1. Copy existing [`college`](https://adobe.sharepoint.com/:f:/r/sites/adobecom/Shared%20Documents/demos/college) content folder to your sharepoint and give helix@adobe.com View access
 2. Click "[Use this template](https://github.com/adobecom/milo-college/generate)" Github button on this project.
+3. Install the [AEM Code Sync Bot](https://github.com/apps/aem-code-sync)
 
 From your newly created project
 
