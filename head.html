@@ -1,6 +1,105 @@
 <!-- Modifying this file will impact your performance -->
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script src="/scripts/fallback.js" nomodule></script>
-<script src="/scripts/scripts.js" type="module"></script>
 <style>body { display: none; }</style>
+<script type="module">
+const [setLibs, getLibs] = (() => {
+  let libs;
+  return [
+    (prodLibs, location) => {
+      libs = (() => {
+        const { hostname, search } = location || window.location;
+        if (!(hostname.includes('.hlx.') || hostname.includes('local'))) return prodLibs;
+        const branch = new URLSearchParams(search).get('milolibs') || 'main';
+        if (branch === 'local') return 'http://localhost:6456/libs';
+        return branch.includes('--') ? `https://${branch}.hlx.live/libs` : `https://${branch}--milo--adobecom.hlx.live/libs`;
+      })();
+      return libs;
+    }, () => libs,
+  ];
+})();
+
+/*
+ * ------------------------------------------------------------
+ * Edit above at your own risk.
+ *
+ * Note: This file should have no self-invoking functions.
+ * ------------------------------------------------------------
+ */
+
+function decorateArea(area = document) {
+  const eagerLoad = (parent, selector) => {
+    const img = parent.querySelector(selector);
+    img?.removeAttribute('loading');
+  };
+
+  (async function loadLCPImage() {
+    const marquee = document.querySelector('.marquee');
+    if (!marquee) {
+      eagerLoad(document, 'img');
+      return;
+    }
+  
+    // First image of first row
+    eagerLoad(marquee, 'div:first-child img');
+    // Last image of last column of last row
+    eagerLoad(marquee, 'div:last-child > div:last-child img');
+  }());
+}
+
+async function useMiloSample() {
+  const { createTag } = await import(`${getLibs()}/utils/utils.js`);
+}
+
+// Add project-wide style path here.
+const STYLES = '';
+
+// Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
+const LIBS = '/libs';
+
+// Add any config options.
+const CONFIG = {
+  // codeRoot: '',
+  // contentRoot: '',
+  // imsClientId: 'college',
+  // imsScope: 'AdobeID,openid,gnav',
+  // geoRouting: 'off',
+  // fallbackRouting: 'off',
+  decorateArea,
+  locales: {
+    '': { ietf: 'en-US', tk: 'hah7vzn.css' },
+    de: { ietf: 'de-DE', tk: 'hah7vzn.css' },
+    kr: { ietf: 'ko-KR', tk: 'zfo3ouc' },
+  },
+};
+
+// Decorate the page with site specific needs.
+decorateArea();
+
+/*
+ * ------------------------------------------------------------
+ * Edit below at your own risk
+ * ------------------------------------------------------------
+ */
+
+const miloLibs = setLibs(LIBS);
+
+(function loadStyles() {
+  console.log("loadStyles")
+  const paths = [`${miloLibs}/styles/styles.css`];
+  if (STYLES) { paths.push(STYLES); }
+  paths.forEach((path) => {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', path);
+    document.head.appendChild(link);
+  });
+}());
+
+(async function loadPage() {
+  const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
+  const config = setConfig({ ...CONFIG, miloLibs });
+  console.log(config);
+  await loadArea();
+}());
+</script>
 <link rel="icon" href="data:,">
