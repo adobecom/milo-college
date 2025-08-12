@@ -61,6 +61,7 @@ const CONFIG = {
   // imsScope: 'AdobeID,openid,gnav',
   // geoRouting: 'off',
   // fallbackRouting: 'off',
+  // iconsExcludeBlocks: [],
   decorateArea,
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
