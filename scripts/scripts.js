@@ -62,6 +62,14 @@ const CONFIG = {
   // geoRouting: 'off',
   // fallbackRouting: 'off',
   // iconsExcludeBlocks: [],
+  // signInContext: { dctx_id: '' },
+  // externalLibs: [
+  //  {
+  //    base: '/path-to-libs',
+  //    blocks: ['block1', 'block2'],
+  //  },
+  // Add more in order of precedence (first match wins):
+  // ],
   decorateArea,
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
