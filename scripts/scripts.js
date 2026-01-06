@@ -50,7 +50,7 @@ function decorateArea(area = document) {
 // Add project-wide style path here.
 const STYLES = '';
 
-// Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
+// Use 'https://www.adobe.com/libs' if you cannot map '/libs' to milo's origin and ensure you don't run into CORS issues.
 const LIBS = '/libs';
 
 // Add any config options.
