@@ -16,7 +16,7 @@ export const [setLibs, getLibs] = (() => {
     (prodLibs, location) => {
       libs = (() => {
         const { hostname, search } = location || window.location;
-        if (!(hostname.includes('.aem.') || hostname.includes('local'))) return prodLibs;
+        if (!['.aem.', 'local', '.da.'].some((i) => hostname.includes(i))) return prodLibs;
         const branch = new URLSearchParams(search).get('milolibs') || 'main';
         if (branch === 'local') return 'http://localhost:6456/libs';
         return branch.includes('--') ? `https://${branch}.aem.live/libs` : `https://${branch}--milo--adobecom.aem.live/libs`;
@@ -39,7 +39,7 @@ function decorateArea(area = document) {
       eagerLoad(document, 'img');
       return;
     }
-  
+
     // First image of first row
     eagerLoad(marquee, 'div:first-child img');
     // Last image of last column of last row
