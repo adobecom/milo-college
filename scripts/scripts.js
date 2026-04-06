@@ -53,6 +53,9 @@ const STYLES = '';
 // Use 'https://www.adobe.com/libs' if you cannot map '/libs' to milo's origin and ensure you don't run into CORS issues.
 const LIBS = '/libs';
 
+// Uncomment to resolve federal content from `${federatedContentRoot}${fedContentPrefix}` when you can't map /federal
+// const fedContentPrefix = '';
+
 // Add any config options.
 const CONFIG = {
   // codeRoot: '',
@@ -62,6 +65,7 @@ const CONFIG = {
   // geoRouting: 'off',
   // fallbackRouting: 'off',
   // iconsExcludeBlocks: [],
+  // fedContentPrefix,
   decorateArea,
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
