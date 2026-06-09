@@ -18,6 +18,7 @@ export const [setLibs, getLibs] = (() => {
         const { hostname, search } = location || window.location;
         if (!(hostname.includes('.aem.') || hostname.includes('local'))) return prodLibs;
         const branch = new URLSearchParams(search).get('milolibs') || 'main';
+        if (!/^[a-zA-Z0-9_-]+$/.test(branch)) throw new Error('Invalid branch name.');
         if (branch === 'local') return 'http://localhost:6456/libs';
         return branch.includes('--') ? `https://${branch}.aem.live/libs` : `https://${branch}--milo--adobecom.aem.live/libs`;
       })();
@@ -50,8 +51,11 @@ function decorateArea(area = document) {
 // Add project-wide style path here.
 const STYLES = '';
 
-// Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
+// Use 'https://www.adobe.com/libs' if you cannot map '/libs' to milo's origin and ensure you don't run into CORS issues.
 const LIBS = '/libs';
+
+// Uncomment to resolve federal content from `${federatedContentRoot}${fedContentPrefix}` when you can't map /federal
+// const fedContentPrefix = '';
 
 // Add any config options.
 const CONFIG = {
@@ -70,6 +74,7 @@ const CONFIG = {
   //  },
   // Add more in order of precedence (first match wins):
   // ],
+  // fedContentPrefix,
   decorateArea,
   locales: {
     '': { ietf: 'en-US', tk: 'hah7vzn.css' },
